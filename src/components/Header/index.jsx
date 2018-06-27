@@ -18,11 +18,6 @@ const Header = () => (
           <a className="navbar-item brand-text" href="/">
             {APP_NAME}
           </a>
-          <div className="navbar-burger burger" data-target="navMenu">
-            <span />
-            <span />
-            <span />
-          </div>
         </div>
         <div id="navMenu" className="navbar-menu">
           <div className="navbar-start">
