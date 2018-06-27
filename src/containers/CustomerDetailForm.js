@@ -3,7 +3,8 @@ import { withJs } from "../utils/immutableWrapper";
 
 import {
   getCustomerDetails,
-  updateCustomerDetails
+  updateCustomerDetails,
+  createCustomer
 } from "../actions/customersList.actions";
 import CustomerDetailForm from "../components/CustomerDetailForm";
 
@@ -14,7 +15,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     getCustomerDetails: cid => dispatch(getCustomerDetails(cid)),
-    updateCustomerDetails: params => dispatch(updateCustomerDetails(params))
+    updateCustomerDetails: params => dispatch(updateCustomerDetails(params)),
+    createCustomer: params => dispatch(createCustomer(params))
   };
 };
 

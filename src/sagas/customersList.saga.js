@@ -1,6 +1,6 @@
-import _ from "lodash";
-import { fromJS } from "immutable";
 import { put, takeLatest, call } from "redux-saga/effects";
+import _ from "lodash";
+
 import {
   GET_CUSTOMERS,
   GET_CUSTOMERS_SUCCESS,
@@ -10,7 +10,10 @@ import {
   GET_CUSTOMER_DETAILS_FAILED,
   UPDATE_CUSTOMER_DETAILS,
   UPDATE_CUSTOMER_DETAILS_SUCCESS,
-  UPDATE_CUSTOMER_DETAILS_FAILED
+  UPDATE_CUSTOMER_DETAILS_FAILED,
+  CREATE_NEW_CUSTOMER,
+  CREATE_NEW_CUSTOMER_SUCCESS,
+  CREATE_NEW_CUSTOMER_FAILED
 } from "../actions/constants";
 
 import * as api from "../services/customers.service";
@@ -21,7 +24,7 @@ function* getCustomers() {
     if (!_.isEmpty(data)) {
       yield put({
         type: GET_CUSTOMERS_SUCCESS,
-        payload: { customersList: fromJS(data) }
+        payload: { customersList: data }
       });
     }
   } catch (error) {
@@ -35,7 +38,7 @@ function* getCustomerDetails({ payload }) {
     if (!_.isEmpty(data)) {
       yield put({
         type: GET_CUSTOMER_DETAILS_SUCCESS,
-        payload: { details: fromJS(data) }
+        payload: { details: data }
       });
     }
   } catch (error) {
@@ -53,11 +56,29 @@ function* updateCustomerDetails({ payload }) {
     if (!_.isEmpty(data)) {
       yield put({
         type: UPDATE_CUSTOMER_DETAILS_SUCCESS,
-        payload: { details: fromJS(data) }
+        payload: { details: data }
       });
     }
   } catch (error) {
     yield put({ type: UPDATE_CUSTOMER_DETAILS_FAILED, payload: { error } });
+  }
+}
+
+function* createCustomer({ payload }) {
+  try {
+    const { formData } = payload;
+    const { data } = yield call(api.createCustomer, {
+      formData
+    });
+
+    if (!_.isEmpty(data)) {
+      yield put({
+        type: CREATE_NEW_CUSTOMER_SUCCESS,
+        payload: { details: data }
+      });
+    }
+  } catch (error) {
+    yield put({ type: CREATE_NEW_CUSTOMER_FAILED, payload: { error } });
   }
 }
 
@@ -66,4 +87,5 @@ export default function* customersListWatcher() {
   yield takeLatest(GET_CUSTOMERS, getCustomers);
   yield takeLatest(GET_CUSTOMER_DETAILS, getCustomerDetails);
   yield takeLatest(UPDATE_CUSTOMER_DETAILS, updateCustomerDetails);
+  yield takeLatest(CREATE_NEW_CUSTOMER, createCustomer);
 }

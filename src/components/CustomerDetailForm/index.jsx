@@ -16,7 +16,7 @@ class CustomerDetailForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      details: props.details || {}
+      details: props.details || { gender: "m" }
     };
   }
 
@@ -57,7 +57,9 @@ class CustomerDetailForm extends Component {
   };
 
   _handleCreate = () => {
-    console.log("triggered _handleCreate");
+    this.props.createCustomer({
+      formData: this.state.details
+    });
   };
 
   render() {

@@ -11,6 +11,7 @@ const _renderMainLayout = props => (
   <MainLayout {...props}>
     <Switch>
       <Route exact path="/customers" component={CustomersList} />
+      <Route exact path="/customers/create" component={CustomerDetailForm} />
       <Route exact path="/customers/view/:id" component={CustomerDetailView} />
       <Route exact path="/customers/edit/:id" component={CustomerDetailForm} />
       <Redirect exact to="/customers" />
