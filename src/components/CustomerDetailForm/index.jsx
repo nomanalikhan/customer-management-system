@@ -16,7 +16,7 @@ class CustomerDetailForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      details: props.details || { gender: "m" }
+      details: _.extend({}, { gender: "m" }, props.details)
     };
   }
 
