@@ -2,9 +2,11 @@ import axios from "axios";
 
 export const CancelToken = axios.CancelToken;
 
+const baseURL = "https://webtrekk-cms-backend.herokuapp.com/";
+
 const instance = axios.create({
-  baseURL: "/",
-  timeout: 35000,
+  baseURL,
+  timeout: 35000
 });
 
 export function get(url, params) {
