@@ -4,11 +4,13 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // import components for routing
 import MainLayout from "./components/MainLayout";
 import CustomersList from "./containers/CustomersList";
+import CustomerDetailView from "./containers/CustomerDetailView";
 
 const _renderMainLayout = props => (
   <MainLayout {...props}>
     <Switch>
       <Route exact path="/customers" component={CustomersList} />
+      <Route exact path="/customers/view/:id" component={CustomerDetailView} />
       <Redirect exact to="/customers" />
     </Switch>
   </MainLayout>
