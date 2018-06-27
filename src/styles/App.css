@@ -6659,13 +6659,6 @@ label.panel-block {
 .p-l-xxl {
   padding-left: 8rem; }
 
-html,
-body {
-  font-size: 16px;
-  line-height: 1.5;
-  height: 100%;
-  background: #ecf0f3; }
-
 nav.navbar {
   border-top: 4px solid #276cda;
   margin-bottom: 1rem; }
@@ -6677,6 +6670,13 @@ nav.navbar {
 .navbar-link {
   font-size: 14px;
   font-weight: 700; }
+
+html,
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  height: 100%;
+  background: #ecf0f3; }
 
 .card {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
