@@ -1,0 +1,4 @@
+// CUSTOMERS_LIST
+export const GET_CUSTOMERS = "CustomersList/GET_CUSTOMERS";
+export const GET_CUSTOMERS_SUCCESS = "CustomersList/GET_CUSTOMERS_SUCCESS";
+export const GET_CUSTOMERS_FAILED = "CustomersList/GET_CUSTOMERS_FAILED";

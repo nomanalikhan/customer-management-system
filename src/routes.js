@@ -3,11 +3,13 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 // import components for routing
 import MainLayout from "./components/MainLayout";
+import CustomersList from "./containers/CustomersList";
 
 const _renderMainLayout = props => (
   <MainLayout {...props}>
     <Switch>
-      <Redirect exact to="/" />
+      <Route exact path="/customers" component={CustomersList} />
+      <Redirect exact to="/customers" />
     </Switch>
   </MainLayout>
 );
@@ -16,5 +18,6 @@ const _renderMainLayout = props => (
 export const Views = () => (
   <Switch>
     <Route path="/" render={_renderMainLayout} />
+    <Redirect exact to="/customers" />
   </Switch>
 );
