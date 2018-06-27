@@ -11,6 +11,14 @@ import {
   formatLastContact
 } from "../../../utils/customer";
 
+/**
+ * Class representing customers table rows.
+ * @param  {array} rows      table rows data
+ * @param  {string} url      base url
+ * @param  {function} removeCustomer      remove customer
+ * @returns  {HTMLElement}  table rows component
+ * @class
+ */
 const List = ({ rows, url, handleRemove }) => {
   const _rows = _.map(rows, row => {
     const { id, name = {} } = row;

@@ -7,12 +7,25 @@ import InputField from "../InputField";
 import SelectField from "../SelectField";
 import DatePicker from "../DatePicker";
 
+/** @const {array}
+ * @memberOf CustomerDetailForm
+ */
 const _genderLookup = [
   { value: "m", label: "Male" },
   { value: "w", label: "Female" }
 ];
 
+/**
+ * Class representing customer detail form component.
+ * @param  {function} handleChange      parent onchange function
+ * @returns  {HTMLElement}  customer detail component
+ * @class
+ */
 class CustomerDetailForm extends Component {
+  /**
+   * @constructs CustomerDetailForm
+   * @param {object} parent props
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +33,9 @@ class CustomerDetailForm extends Component {
     };
   }
 
+  /**
+   * triggers api call to fetch cusomtomer details when component get rendered completely
+   */
   componentDidMount() {
     const { match } = this.props;
     if (match.params.id) {
@@ -27,12 +43,20 @@ class CustomerDetailForm extends Component {
     }
   }
 
+  /**
+   * triggers everytime when there's any change on parent passed properties. updates details local object if there's any change
+   */
   componentWillReceiveProps({ details }) {
     if (!_.isEqual(details, this.props.details)) {
       this.setState({ details });
     }
   }
 
+  /**
+   * triggers parent onchage function. a closure that take the state key initially and make the changes accordingly
+   * @param {string} key state variable
+   * @param {string} val change propogate form child components or fields
+   */
   _handleChange = key => val => {
     this.setState(({ details }) => {
       if (_.includes(["first", "last"], key)) {
@@ -48,6 +72,9 @@ class CustomerDetailForm extends Component {
     });
   };
 
+  /**
+   * triggers the action that make the api call to update customer details.
+   */
   _handleUpdate = () => {
     const { match } = this.props;
     this.props.updateCustomerDetails({
@@ -56,12 +83,19 @@ class CustomerDetailForm extends Component {
     });
   };
 
+  /**
+   * triggers the action that make the api call to create new customer.
+   */
   _handleCreate = () => {
     this.props.createCustomer({
       formData: this.state.details
     });
   };
 
+  /**
+   * renders the form
+   * @returns  {HTMLElement}  composed customer detail form component
+   */
   render() {
     const { _handleChange, _handleCreate, _handleUpdate } = this;
     const { details = {} } = this.state;

@@ -2,7 +2,14 @@ import React from "react";
 import _ from "lodash";
 import { NavLink } from "react-router-dom";
 
+/** @const {string}
+ * @memberOf Header
+ */
 const APP_NAME = "Webtrekk";
+
+/** @const {array}
+ * @memberOf Header
+ */
 const links = [
   {
     name: "Customers",
@@ -10,6 +17,11 @@ const links = [
   }
 ];
 
+/**
+ * Class for header.
+ * @returns  {HTMLElement}  header component
+ * @class
+ */
 const Header = () => (
   <header>
     <nav className="navbar is-white">

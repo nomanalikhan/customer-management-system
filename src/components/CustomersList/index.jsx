@@ -5,11 +5,23 @@ import _ from "lodash";
 import CustomersTable from "./CustomersTable";
 import AddNewBtn from "./AddNewBtn";
 
+/**
+ * Class representing list of customer.
+ * @returns  {HTMLElement}  customers list componentÍ
+ * @class
+ */
 class CustomersList extends Component {
+  /**
+   * triggers api call to fetch cusomtomers list when component get rendered completely
+   */
   componentDidMount() {
     this.props.getCustomers();
   }
 
+  /**
+   * renders the list
+   * @returns  {HTMLElement}  composed customers list component
+   */
   render() {
     const { customersList, removeCustomer, match } = this.props;
 
