@@ -7,7 +7,10 @@ import {
   GET_CUSTOMERS_FAILED,
   GET_CUSTOMER_DETAILS,
   GET_CUSTOMER_DETAILS_SUCCESS,
-  GET_CUSTOMER_DETAILS_FAILED
+  GET_CUSTOMER_DETAILS_FAILED,
+  UPDATE_CUSTOMER_DETAILS,
+  UPDATE_CUSTOMER_DETAILS_SUCCESS,
+  UPDATE_CUSTOMER_DETAILS_FAILED
 } from "../actions/constants";
 
 import * as api from "../services/customers.service";
@@ -40,8 +43,27 @@ function* getCustomerDetails({ payload }) {
   }
 }
 
+function* updateCustomerDetails({ payload }) {
+  try {
+    const { cid, formData } = payload;
+    const { data } = yield call(api.updateCustomerDetails, {
+      id: cid,
+      formData
+    });
+    if (!_.isEmpty(data)) {
+      yield put({
+        type: UPDATE_CUSTOMER_DETAILS_SUCCESS,
+        payload: { details: fromJS(data) }
+      });
+    }
+  } catch (error) {
+    yield put({ type: UPDATE_CUSTOMER_DETAILS_FAILED, payload: { error } });
+  }
+}
+
 // Watches for action types asynchronously
 export default function* customersListWatcher() {
   yield takeLatest(GET_CUSTOMERS, getCustomers);
   yield takeLatest(GET_CUSTOMER_DETAILS, getCustomerDetails);
+  yield takeLatest(UPDATE_CUSTOMER_DETAILS, updateCustomerDetails);
 }

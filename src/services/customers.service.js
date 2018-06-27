@@ -1,4 +1,4 @@
-import { get } from "./httpService";
+import { get, put } from "./httpService";
 
 const url = "users";
 export function getCustomers() {
@@ -7,4 +7,8 @@ export function getCustomers() {
 
 export function getCustomerDetails(id) {
   return get(`${url}/${id}`);
+}
+
+export function updateCustomerDetails({ id, formData }) {
+  return put(`${url}/${id}`, formData);
 }

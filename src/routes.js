@@ -5,12 +5,14 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import MainLayout from "./components/MainLayout";
 import CustomersList from "./containers/CustomersList";
 import CustomerDetailView from "./containers/CustomerDetailView";
+import CustomerDetailForm from "./containers/CustomerDetailForm";
 
 const _renderMainLayout = props => (
   <MainLayout {...props}>
     <Switch>
       <Route exact path="/customers" component={CustomersList} />
       <Route exact path="/customers/view/:id" component={CustomerDetailView} />
+      <Route exact path="/customers/edit/:id" component={CustomerDetailForm} />
       <Redirect exact to="/customers" />
     </Switch>
   </MainLayout>
