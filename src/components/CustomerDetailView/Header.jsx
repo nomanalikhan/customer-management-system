@@ -6,11 +6,7 @@ import Button from "../Button";
 
 const ControlBtns = ({ buttons }) =>
   _.map(buttons, ({ btnCls, iconCls, to, label }) => (
-    <Button
-      key={label}
-      className={`button ${btnCls}`}
-      to={`/customers/edit/${to}`}
-    >
+    <Button key={label} className={`button ${btnCls}`} to={to}>
       <span className="icon">
         <i className={iconCls} />
       </span>
