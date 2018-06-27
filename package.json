@@ -2,7 +2,7 @@
   "name": "customer-management-system",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4001/",
+  "proxy": "https://webtrekk-cms-backend.herokuapp.com/",
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
