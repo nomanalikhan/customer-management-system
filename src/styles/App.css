@@ -160,12 +160,12 @@
   .is-active.pagination-link,
   .is-active.pagination-ellipsis {
     outline: none; }
-  [disabled].button, [disabled].input,
-  [disabled].textarea, .select select[disabled], [disabled].file-cta,
-  [disabled].file-name, [disabled].pagination-previous,
-  [disabled].pagination-next,
-  [disabled].pagination-link,
-  [disabled].pagination-ellipsis {
+  .button[disabled], .input[disabled],
+  .textarea[disabled], .select select[disabled], .file-cta[disabled],
+  .file-name[disabled], .pagination-previous[disabled],
+  .pagination-next[disabled],
+  .pagination-link[disabled],
+  .pagination-ellipsis[disabled] {
     cursor: not-allowed; }
 
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
