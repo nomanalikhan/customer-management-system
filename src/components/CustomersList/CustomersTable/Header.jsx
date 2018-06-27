@@ -8,6 +8,10 @@ const Header = ({ columns }) => (
   </thead>
 );
 
+Header.defaultProps = {
+  data: []
+}
+
 Header.propTypes = {
   data: array.isRequired
 };

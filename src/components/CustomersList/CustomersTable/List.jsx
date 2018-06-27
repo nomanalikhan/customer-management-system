@@ -35,6 +35,10 @@ const List = ({ rows }) => {
   return <tbody>{_rows}</tbody>;
 };
 
+List.defaultProps = {
+  rows: []
+};
+
 List.propTypes = {
   rows: array.isRequired
 };
