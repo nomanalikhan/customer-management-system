@@ -14,7 +14,10 @@ import {
   UPDATE_CUSTOMER_DETAILS_FAILED,
   CREATE_NEW_CUSTOMER,
   CREATE_NEW_CUSTOMER_SUCCESS,
-  CREATE_NEW_CUSTOMER_FAILED
+  CREATE_NEW_CUSTOMER_FAILED,
+  REMOVE_CUSTOMER,
+  REMOVE_CUSTOMER_SUCCESS,
+  REMOVE_CUSTOMER_FAILED
 } from "../actions/constants";
 
 import * as api from "../services/customers.service";
@@ -86,10 +89,25 @@ function* createCustomer({ payload }) {
   }
 }
 
+function* removeCustomer({ payload }) {
+  try {
+    yield call(api.removeCustomer, { id: payload.cid });
+
+    yield put({
+      type: REMOVE_CUSTOMER_SUCCESS
+    });
+
+    yield getCustomers();
+  } catch (error) {
+    yield put({ type: REMOVE_CUSTOMER_FAILED, payload: { error } });
+  }
+}
+
 // Watches for action types asynchronously
 export default function* customersListWatcher() {
   yield takeLatest(GET_CUSTOMERS, getCustomers);
   yield takeLatest(GET_CUSTOMER_DETAILS, getCustomerDetails);
   yield takeLatest(UPDATE_CUSTOMER_DETAILS, updateCustomerDetails);
   yield takeLatest(CREATE_NEW_CUSTOMER, createCustomer);
+  yield takeLatest(REMOVE_CUSTOMER, removeCustomer);
 }

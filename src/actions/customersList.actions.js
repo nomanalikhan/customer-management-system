@@ -6,7 +6,8 @@ import {
   GET_CUSTOMERS,
   GET_CUSTOMER_DETAILS,
   UPDATE_CUSTOMER_DETAILS,
-  CREATE_NEW_CUSTOMER
+  CREATE_NEW_CUSTOMER,
+  REMOVE_CUSTOMER
 } from "./constants";
 
 export const getCustomers = () => ({
@@ -26,4 +27,9 @@ export const updateCustomerDetails = payload => ({
 export const createCustomer = payload => ({
   type: CREATE_NEW_CUSTOMER,
   payload
+});
+
+export const removeCustomer = cid => ({
+  type: REMOVE_CUSTOMER,
+  payload: { cid }
 });

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { withJs } from "../utils/immutableWrapper";
 
-import { getCustomers } from "../actions/customersList.actions";
+import { getCustomers, removeCustomer } from "../actions/customersList.actions";
 import CustomersList from "../components/CustomersList";
 
 const mapStateToProps = state => ({
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCustomers: () => dispatch(getCustomers())
+    getCustomers: () => dispatch(getCustomers()),
+    removeCustomer: (cid) => dispatch(removeCustomer(cid))
   };
 };
 

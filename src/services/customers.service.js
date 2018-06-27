@@ -1,4 +1,4 @@
-import { get, post, put } from "./httpService";
+import { get, post, put, remove } from "./httpService";
 
 const url = "users";
 export function getCustomers() {
@@ -15,4 +15,8 @@ export function createCustomer({ formData }) {
 
 export function updateCustomerDetails({ id, formData }) {
   return put(`${url}/${id}`, formData);
+}
+
+export function removeCustomer({ id }) {
+  return remove(`${url}/${id}`);
 }
