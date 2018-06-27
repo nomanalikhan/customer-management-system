@@ -1,8 +1,8 @@
 import React from "react";
-import { string, number } from "prop-types";
+import { string, number, func } from "prop-types";
 import Button from "../Button";
 
-const ActionControls = ({ id, url }) => (
+const ActionControls = ({ id, url, handleRemove }) => (
   <div className="buttons">
     <Button to={`${url}/view/${id}`}>
       <span className="icon has-text-info">
@@ -14,7 +14,11 @@ const ActionControls = ({ id, url }) => (
         <i className="fas fa-pencil-alt" />
       </span>
     </Button>
-    <Button to={`${url}/delete/${id}`}>
+    <Button
+      onClick={() => {
+        handleRemove(id);
+      }}
+    >
       <span className="icon has-text-danger">
         <i className="fas fa-trash-alt" />
       </span>
@@ -24,8 +28,8 @@ const ActionControls = ({ id, url }) => (
 
 ActionControls.propTypes = {
   url: string.isRequired,
-  id: number.isRequired
+  id: number.isRequired,
+  handleRemove: func.isRequired
 };
-
 
 export default ActionControls;

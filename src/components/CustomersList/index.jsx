@@ -11,7 +11,7 @@ class CustomersList extends Component {
   }
 
   render() {
-    const { customersList, match } = this.props;
+    const { customersList, removeCustomer, match } = this.props;
 
     // render null if no data
     if (_.isEmpty(customersList)) {
@@ -24,7 +24,11 @@ class CustomersList extends Component {
           <div className="card-content">
             <AddNewBtn url={match.url} />
           </div>
-          <CustomersTable data={customersList} url={match.url} />
+          <CustomersTable
+            data={customersList}
+            url={match.url}
+            removeCustomer={removeCustomer}
+          />
         </div>
       </section>
     );

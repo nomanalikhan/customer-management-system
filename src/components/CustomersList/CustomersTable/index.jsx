@@ -1,11 +1,11 @@
 import React from "react";
-import { array, string } from "prop-types";
+import { array, string, func } from "prop-types";
 import _ from "lodash";
 
 import Header from "./Header";
 import List from "./List";
 
-const CustomersTable = ({ data, url }) => {
+const CustomersTable = ({ data, url, removeCustomer }) => {
   // fetch first object keys for header table header. Concat an extra key for action controls
   const tblHeaderKeys = _.concat(_.keys(_.first(data)), "actions");
 
@@ -14,7 +14,7 @@ const CustomersTable = ({ data, url }) => {
       <div className="content">
         <table className="table is-striped is-hoverable is-fullwidth">
           <Header columns={tblHeaderKeys} />
-          <List rows={data} url={url} />
+          <List rows={data} url={url} handleRemove={removeCustomer} />
         </table>
       </div>
     </div>
@@ -23,12 +23,14 @@ const CustomersTable = ({ data, url }) => {
 
 CustomersTable.defaultProps = {
   data: [],
-  url: ""
+  url: "",
+  removeCustomer: () => {}
 };
 
 CustomersTable.propTypes = {
   data: array.isRequired,
-  url: string.isRequired
+  url: string.isRequired,
+  removeCustomer: func.isRequired
 };
 
 export default CustomersTable;

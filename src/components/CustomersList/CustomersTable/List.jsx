@@ -1,5 +1,5 @@
 import React from "react";
-import { array, string } from "prop-types";
+import { array, string, func } from "prop-types";
 import _ from "lodash";
 
 import ActionControls from "../ActionControls";
@@ -11,7 +11,7 @@ import {
   formatLastContact
 } from "../../../utils/customer";
 
-const List = ({ rows, url }) => {
+const List = ({ rows, url, handleRemove }) => {
   const _rows = _.map(rows, row => {
     const { id, name = {} } = row;
     const fullName = `${name.first} ${name.last}`;
@@ -22,7 +22,7 @@ const List = ({ rows, url }) => {
       getGender(row.gender),
       formatLastContact(row.lastContact),
       row.customerLifetimeValue,
-      <ActionControls id={id} url={url} />
+      <ActionControls id={id} url={url} handleRemove={handleRemove} />
     ];
 
     return (
@@ -37,12 +37,14 @@ const List = ({ rows, url }) => {
 
 List.defaultProps = {
   rows: [],
-  url: ""
+  url: "",
+  handleRemove: () => {}
 };
 
 List.propTypes = {
   rows: array.isRequired,
-  url: string.isRequired
+  url: string.isRequired,
+  handleRemove: func.isRequired
 };
 
 export default List;
