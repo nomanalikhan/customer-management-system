@@ -10,10 +10,14 @@ const CustomersTable = ({ data }) => {
   const tblHeaderKeys = _.concat(_.keys(_.first(data)), "actions");
 
   return (
-    <table className="table is-striped is-hoverable is-fullwidth">
-      <Header columns={tblHeaderKeys} />
-      <List rows={data} />
-    </table>
+    <div className="card-table">
+      <div className="content">
+        <table className="table is-striped is-hoverable is-fullwidth">
+          <Header columns={tblHeaderKeys} />
+          <List rows={data} />
+        </table>
+      </div>
+    </div>
   );
 };
 

@@ -24,11 +24,7 @@ class CustomersList extends Component {
           <div className="card-content">
             <AddNewBtn url={match.url} />
           </div>
-          <div className="card-table">
-            <div className="content">
-              <CustomersTable data={customersList} />
-            </div>
-          </div>
+          <CustomersTable data={customersList} />
         </div>
       </section>
     );
