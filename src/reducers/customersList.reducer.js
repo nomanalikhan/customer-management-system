@@ -3,7 +3,9 @@ import {
   GET_CUSTOMERS_SUCCESS,
   GET_CUSTOMERS_FAILED,
   GET_CUSTOMER_DETAILS_SUCCESS,
-  GET_CUSTOMER_DETAILS_FAILED
+  GET_CUSTOMER_DETAILS_FAILED,
+  CREATE_NEW_CUSTOMER_SUCCESS,
+  UPDATE_CUSTOMER_DETAILS_SUCCESS
 } from "../actions/constants";
 
 const initialState = fromJS({
@@ -21,6 +23,10 @@ function customersListReducer(state = initialState, action) {
       return state.set("details", action.payload.details);
     case GET_CUSTOMER_DETAILS_FAILED:
       return state.set("details", fromJS([]));
+    case CREATE_NEW_CUSTOMER_SUCCESS:
+    case UPDATE_CUSTOMER_DETAILS_SUCCESS:
+      return state.set("details", fromJS([]));
+
     default:
       return state;
   }

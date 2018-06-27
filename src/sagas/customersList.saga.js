@@ -1,3 +1,4 @@
+import { push } from "react-router-redux";
 import { put, takeLatest, call } from "redux-saga/effects";
 import _ from "lodash";
 
@@ -58,6 +59,7 @@ function* updateCustomerDetails({ payload }) {
         type: UPDATE_CUSTOMER_DETAILS_SUCCESS,
         payload: { details: data }
       });
+      yield put(push("/customers"));
     }
   } catch (error) {
     yield put({ type: UPDATE_CUSTOMER_DETAILS_FAILED, payload: { error } });
@@ -76,6 +78,8 @@ function* createCustomer({ payload }) {
         type: CREATE_NEW_CUSTOMER_SUCCESS,
         payload: { details: data }
       });
+
+      yield put(push("/customers"));
     }
   } catch (error) {
     yield put({ type: CREATE_NEW_CUSTOMER_FAILED, payload: { error } });
